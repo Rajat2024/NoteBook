@@ -10,6 +10,8 @@ import Alert from "./components/Alert";
 import SignUp from "./components/Signup";
 import Login from "./components/Login";
 import Page404 from "./components/Page404";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [alert, setAlert] = useState(null);
@@ -46,6 +48,7 @@ function App() {
           </div>
         </BrowserRouter>
       </NoteState>
+      <ToastContainer />
     </>
   );
 }
