@@ -1,6 +1,7 @@
  # NOTEBOOK
  
-Notebook is created using React as a frontend and NodeJS as a backend. You can add ,delete and update notes in your Mongoose database. You create a password using express validation , authentication using JWT Token and salting. An easy way to sign up and log in a notebook, context for data passing through the component.
+Notebook is an intuitive website that allows you to effortlessly write your notes, ensuring they are securely saved in a reliable database. This user-friendly and flexible platform empowers you to easily edit or delete your notes according to your preferences. Moreover, you can create your very own protected and secure account, providing you with peace of mind.
+ 
 
 
 <p align="center"> <a href="https://mern-notebook.onrender.com/" target="_blank"><img alt="" src="https://img.shields.io/badge/Website-EA4C89?style=normal&logo=dribbble&logoColor=white" style="vertical-align:center" /></a> <a href="https://twitter.com/Rajatsi16812370" target="_blank"><img alt="" src="https://img.shields.io/badge/Twitter-1DA1F2?style=normal&logo=twitter&logoColor=white" style="vertical-align:center" /></a> <a href="https://www.instagram.com/rajat_singh0115/" target="_blank"><img alt="" src="https://img.shields.io/badge/Instagram-E4405F?style=normal&logo=instagram&logoColor=white" style="vertical-align:center" /></a> <a href="https://www.linkedin.com/in/rajat-singh-b6a92b212/}" target="_blank"><img alt="" src="https://img.shields.io/badge/LinkedIn-0077B5?style=normal&logo=linkedin&logoColor=white" style="vertical-align:center" /></a> </p>
