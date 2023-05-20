@@ -36,15 +36,16 @@ Notebook is created using React as a frontend and NodeJS as a backend. You can a
 1. Find the issue you want to work on or can make a new one by tapping on `new issue`.
 2. You will get assigned with an issue by the mentor.
 3. Fork the repo.
-4. Clone the repository in your laptop.    `git clone https://github.com/<your-username>/Rajat2024/NoteBook.git`
-5. Follow the below `steps to run this project` steps to make it work on your computer.
-6. Make a new branch for your changes.  `git branch <nameofthebranch>`   `git checkout <nameofthebranch>`
-7. Make the required changes then do the folllowing: `git add .`  
-8. Make the commit message appropriate explaining the changes `git commit -m "<chnages>"`
-9. Push the changes from your newbranch `git push -u origin "nameofthebranch"`
-10. You will see the `compare and pull request` button on you forked repository.
-11. Explain the changes you have done and then you're good to go.
-12. yay! you have made an contribution to the repository.
+4. Clone the repository in your laptop.   
+   `git clone https://github.com/<your-username>/Rajat2024/NoteBook.git`
+6. Follow the below `steps to run this project` steps to make it work on your computer.
+7. Make a new branch for your changes.  `git branch <nameofthebranch>`   `git checkout <nameofthebranch>`
+8. Make the required changes then do the folllowing: `git add .`  
+9. Make the commit message appropriate explaining the changes `git commit -m "<chnages>"`
+10. Push the changes from your newbranch `git push -u origin "nameofthebranch"`
+11. You will see the `compare and pull request` button on you forked repository.
+12. Explain the changes you have done and then you're good to go.
+13. yay! you have made an contribution to the repository.
 
 
 # Step to run this project:
