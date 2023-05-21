@@ -11,6 +11,7 @@ const catchAsync = require("../utils/catchAsync");
 const { authValidation } = require("../validation/index");
 
 let fetchuser = require("../middleware/fetchuser");
+const ApiError = require("../utils/ApiError");
 
 // Create a user using POST '/api/routes'. Dosen't require login
 // Post means we create or update database
@@ -131,5 +132,19 @@ router.post(
     }
   })
 );
+
+
+/* 
+  request contains email
+ */
+router.post("/forgot-password", /* Add validation when I am done */ catchAsync(async (req, res) => {
+  // first generate token 
+  const getEmail = await User.findOne({ email: req.body.email });
+  if (!getEmail) {
+    throw new ApiError(404, "No user found with this status code");
+  }
+  
+
+}))
 
 module.exports = router;

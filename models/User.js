@@ -19,6 +19,10 @@ const userSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    isEmailVerified: {
+        type: Boolean,
+        default: false
+    }
 
 });
 // here user is the name of collection in database
