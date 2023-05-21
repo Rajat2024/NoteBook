@@ -92,7 +92,7 @@ function Navbar() {
               <>
                 
                 {localStorage.getItem("name") ? (
-                  <div className="h3 px-10">{localStorage.getItem("name")}</div>
+                  <div className="h3 px-10">{localStorage.getItem("name")|| ""}</div>
                 ) : (
                   ""
                 )}<Link
