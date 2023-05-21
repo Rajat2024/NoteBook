@@ -11,8 +11,9 @@ const catchAsync = require("../utils/catchAsync");
 const { authValidation } = require("../validation/index");
 
 let fetchuser = require("../middleware/fetchuser");
-const ApiError = require("../utils/ApiError");
 const { authController } = require("../controllers");
+const ApiError = require("../utils/ApiError");
+const httpStatus = require("http-status");
 
 // Create a user using POST '/api/routes'. Dosen't require login
 // Post means we create or update database
@@ -35,14 +36,11 @@ router.post(
           .status(400)
           .json({ success, error: "A user with this email already exist" });
       }
-      // use of bcrypt to encrypt password
-      var salt = bcrypt.genSaltSync(10); // it creates a salt of 10 characters
-      const secPass = bcrypt.hashSync(req.body.password, salt); // it adds salt to password and then encrypts it
-      // user schema
+      /* did a pre-save hook to handle this; check the model/User.js */
       user = await User.create({
         email: req.body.email,
         name: req.body.name,
-        password: secPass,
+        password: req.body.password,
       });
 
       // use of jwt token to provide secure communication between client and server
@@ -91,11 +89,15 @@ router.post(
           .json({ success, error: "Please login using correct credentials" });
       }
       // use of bcrypt to compare password it return true or false
-      let passwordCompare = await bcrypt.compare(password, user.password);
+      /* let passwordCompare = await bcrypt.compare(password, user.password);
       if (!passwordCompare) {
         return res
           .status(400)
           .json({ success, error: "Please login using correct credentials" });
+      } */
+
+      if (!user || !(await user.isPasswordMatch(password))) {
+        throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
       }
       // use of jwt token to provide secure communication between client and server
       const data = {
