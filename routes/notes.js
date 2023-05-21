@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Notes = require("../models/Note");
 let fetchuser = require("../middleware/fetchuser"); 
-const { body, validationResult } = require("express-validator");// used in body of request
+const { validationResult } = require("express-validator");// used in body of request
+const { notesValidation } = require("../validation");
 
 //Route 1: fetch all notes of a user using GET
 // login required
@@ -25,10 +26,7 @@ router.get("/fetchallnotes", fetchuser, async (req, res) => {
 router.post(
   "/addnote",
   fetchuser,
-  [
-    body("title", "Enter a valid title").isLength({ min: 3 }),
-    body("description", "Enter a valid description").isLength({ min: 5 }),
-  ],
+  notesValidation.addNoteValidation,
   async (req, res) => {
     //if there are errors in request, return bad request and the errors
     const errors = validationResult(req);

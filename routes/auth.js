@@ -1,28 +1,23 @@
 const express = require("express");
-const router = express.Router();// to create routes
+const router = express.Router(); // to create routes
 const User = require("../models/User"); // import user schema from database
-const { body, validationResult } = require("express-validator"); // used in body of request
-var bcrypt = require("bcryptjs"); 
+const { validationResult } = require("express-validator"); // used in body of request
+var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
-
-const dotenv = require('dotenv');
-dotenv.config(); 
-let fetchuser = require("../middleware/fetchuser");
-
+const dotenv = require("dotenv");
+dotenv.config();
 const secret = process.env.SECRET_KEY;
+const catchAsync = require("../utils/catchAsync");
+const { authValidation } = require("../validation/index");
+
+let fetchuser = require("../middleware/fetchuser");
 
 // Create a user using POST '/api/routes'. Dosen't require login
 // Post means we create or update database
 router.post(
   "/createuser",
-  [
-    body("email", "Enter a valid Email").isEmail(),
-    body("name", "Enter a valid name").isLength({ min: 3 }),
-    body("password", "Password must be atleast of 5 characters").isLength({
-      min: 5,
-    }),
-  ],
-  async (req, res) => {
+  authValidation.createUserValidation,
+  catchAsync(async (req, res) => {
     let success = false;
 
     // if there are errors in request, return bad request and the errors
@@ -68,18 +63,15 @@ router.post(
       console.log(error.message);
       res.status(500).send("Internal server error has occured");
     }
-  }
+  })
 );
 
 //Login a user using credentials
 // here we use post because we are sending data to server
 router.post(
   "/login",
-  [
-    body("email", "Enter a valid Email").isEmail(),
-    body("password", "Password cannot be blank").exists(),
-  ],
-  async (req, res) => {
+  authValidation.userLoginValidation,
+  catchAsync(async (req, res) => {
     // if there are errors in request, return bad request and the errors
     let success = false;
     const errors = validationResult(req);
@@ -117,23 +109,27 @@ router.post(
       console.log(error.message);
       res.status(500).send("Internal server error has occured");
     }
-  }
+  })
 );
 
 // get user details
 // it first call the middleware fetchuser which check whether user is valid or not
 // fetchuser takes the auth-token from request header and then verify it using jwt
 //then call the next function
-router.post("/getuser", fetchuser, async (req, res) => {
-  try {
-    const userID = req.user.id;
-    // check whether user with this email  exist
-    let user = await User.findOne({ userID }).select("-password");
-    res.send(user);
-  } catch (error) {
-    console.log(error.message);
-    res.status(500).send("Internal server error has occured");
-  }
-});
+router.post(
+  "/getuser",
+  fetchuser,
+  catchAsync(async (req, res) => {
+    try {
+      const userID = req.user.id;
+      // check whether user with this email  exist
+      let user = await User.findOne({ userID }).select("-password");
+      res.send(user);
+    } catch (error) {
+      console.log(error.message);
+      res.status(500).send("Internal server error has occured");
+    }
+  })
+);
 
 module.exports = router;
