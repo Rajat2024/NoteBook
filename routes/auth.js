@@ -138,11 +138,7 @@ router.post(
 /* 
   request contains email
  */
-router.post("/forgot-password", /* Add validation when I am done */ catchAsync(async (req, res) => {
-  authController.forgotPassword
-}))
-router.post("/reset-password", /* Add validation when I am done */ catchAsync(async (req, res) => {
-  authController.resetPassword
-}))
+router.post("/forgot-password", /* Add validation when I am done */ authController.forgotPassword);
+router.post("/reset-password", /* Add validation when I am done */ authController.resetPassword);
 
 module.exports = router;

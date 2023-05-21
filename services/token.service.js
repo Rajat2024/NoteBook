@@ -6,7 +6,7 @@ const httpStatus = require("http-status");
 const tokenSecret = process.env.SECRET_KEY;
 const ressetPasswordExpirationMinutes =
   process.env.RESET_PASSWORD_EXPIRATION_MINUTES;
-const { userService } = require(".");
+const userService = require("./user.service");
 const ApiError = require("../utils/ApiError");
 const { tokenTypes } = require("../config/token");
 const Token = require("../models/Token");
@@ -33,8 +33,8 @@ const generateToken = (userId, expires, type, secret = tokenSecret) => {
 };
 
 const generateResetPasswordToken = async (email) => {
-  // fetch user
   const user = await userService.getUserByEmail(email);
+  console.log(user)
   if (!user) {
     throw new ApiError(httpStatus.NOT_FOUND, "No user with this email found");
   }
@@ -45,6 +45,9 @@ const generateResetPasswordToken = async (email) => {
     expires,
     tokenTypes.RESET_PASSWORD
   );
+
+  console.log("=========== This is the rest password token ========")
+  console.log(resetPasswordToken)
   await saveToken(
     resetPasswordToken,
     user.id,
