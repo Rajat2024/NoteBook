@@ -97,7 +97,10 @@ router.post(
       } */
 
       if (!user || !(await user.isPasswordMatch(password))) {
-        throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
+        throw new ApiError(
+          httpStatus.UNAUTHORIZED,
+          "Incorrect email or password"
+        );
       }
       // use of jwt token to provide secure communication between client and server
       const data = {
@@ -136,11 +139,18 @@ router.post(
   })
 );
 
-
 /* 
   request contains email
  */
-router.post("/forgot-password", /* Add validation when I am done */ authController.forgotPassword);
-router.post("/reset-password", /* Add validation when I am done */ authController.resetPassword);
+router.post(
+  "/forgot-password",
+  authValidation.forgotPasswordValidation,
+  authController.forgotPassword
+);
+router.post(
+  "/reset-password",
+  authValidation.resetPasswordValidation,
+  authController.resetPassword
+);
 
 module.exports = router;

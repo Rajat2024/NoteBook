@@ -1,4 +1,4 @@
-const { body, validationResult } = require("express-validator");
+const { body, query } = require("express-validator");
 
 const createUserValidation = [
   body("email", "Enter a valid Email").isEmail(),
@@ -13,7 +13,17 @@ const userLoginValidation = [
   body("password", "Password cannot be blank").exists(),
 ];
 
+const forgotPasswordValidation = [
+  body("email", "Enter a valid email").isEmail(),
+]
+
+const resetPasswordValidation = [
+  query("token").notEmpty().withMessage("Invalid token supplied")
+]
+
 module.exports = {
   createUserValidation,
   userLoginValidation,
+  forgotPasswordValidation,
+  resetPasswordValidation
 };
