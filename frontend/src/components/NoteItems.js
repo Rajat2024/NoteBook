@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import NoteContext from '../context/notes/noteContext'
 import "./noteitem.css"
 function NoteItems(props) {
     const { note, updateNote } = props;
+    const [date, setDate] = useState();
 
     const context = useContext(NoteContext)
     const { deleteNote } = context;
@@ -12,9 +13,10 @@ function NoteItems(props) {
         props.showAlert("Note is deleted successfully", "success")
     }
 
-    let date = note.date;
-    date = date.slice(0, -14).split('-').reverse().join('-');
-
+    useEffect(()=>{
+        setDate(note.date.slice(0, -14).split('-').reverse().join('-'));
+    },[note.date])
+    
     return (
         <div className='col-sm-4 col-md-3 my-2 ' >
             <div className="card mh-100" >
