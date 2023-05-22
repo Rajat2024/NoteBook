@@ -67,7 +67,7 @@ function SignUp(props) {
                     </div>
                     <div className="mb-3 ">
                         <label htmlFor="name" className="form-label">Name</label>
-                        <input type="text" className="form-control" onChange={onchange} id="name" name="name" />
+                        <input type="text" className="form-control" onChange={onchange} id="name" name="name"  required />
                     </div>
                     <div className="mb-3 ">
                         <label htmlFor="password" className="form-label">Password</label>
