@@ -34,7 +34,7 @@ function Login(props) {
     }
 
     return (
-        <div>
+        <div className='container my-5'>
             <div className='text-center my-4'>
                 <h1>NOTEBOOK</h1>
                 <p><b>Your notes on cloud ☁️</b></p>

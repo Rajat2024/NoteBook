@@ -10,7 +10,7 @@ import Alert from "./components/Alert";
 import SignUp from "./components/Signup";
 import Login from "./components/Login";
 import Page404 from "./components/Page404";
-
+import Home from "./components/Home";
 function App() {
   const [alert, setAlert] = useState(null);
 
@@ -29,14 +29,15 @@ function App() {
       <NoteState>
         <BrowserRouter>
           <Navbar />
-          <Alert alert={alert} />
+          {alert?<Alert alert={alert} />:""}
 
-          <div className="container my-5">
+          <div className="">
             <Routes>
               <Route path="/" element={<AddNote showAlert={showAlert} />} />
               <Route path="/notes" element={<Notes showAlert={showAlert} />} />
               <Route path="/about" element={<About showAlert={showAlert} />} />
               <Route path="/login" element={<Login showAlert={showAlert} />} />
+              <Route path="/home" element={<Home showAlert={showAlert} />} />
               <Route
                 path="/signup"
                 element={<SignUp showAlert={showAlert} />}

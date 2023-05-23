@@ -45,9 +45,9 @@ function Notes(props) {
 
     return (
         <>
-            <div className='my-5' >
-                <div >
-                    <h3>🧾 Your Notes:</h3>
+            <div className='container my-5' >
+                <div className='my-5' >
+                    <h3 >🧾 Your Notes:</h3>
                 </div>
                 <div className="d-flex py-3     justify-content-center">
                   <input
@@ -60,7 +60,7 @@ function Notes(props) {
                   />
                  
                 </div>
-            </div>
+           
             
 
             <EditNote reference={ref} closeref={refclose} enote={enote} onchange={onchange} handleChange={handleEdit} />
@@ -75,6 +75,7 @@ function Notes(props) {
                     return <NoteItems key={note._id} note={note} updateNote={updateNote} showAlert={props.showAlert} />
                 })}
 
+            </div>
             </div>
         </>
     )

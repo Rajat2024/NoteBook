@@ -3,7 +3,7 @@ import React from "react";
 
 const About = () => {
 
-  return <div className="container">
+  return <div className="container my-5">
     <h4>This is about Notebook:</h4>
     <p className="mx-3 mt-5"> Using Notebook you could-</p>
     <ul className="list-group list-group-flush list-group-numbered mx-5">

@@ -36,7 +36,7 @@ function AddNote(props)
     }, [])
 
     return (
-        <div>
+        <div className="container my-5">
             <div className='my-4'>
                 <div className="text-center">
                     <h3>✍🏻 Add A New Note:</h3>

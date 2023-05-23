@@ -8,7 +8,9 @@ function Navbar() {
     localStorage.removeItem("token");
     navigate("/login");
   };
-
+const handleClick=()=>{
+  navigate('/home')
+}
   return (
     <div>
       <nav
@@ -16,7 +18,7 @@ function Navbar() {
         style={{ backgroundColor: "#e3f2fd", opacity: "70%" }}
       >
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="#" onClick={handleClick}>
             NOTEBOOK
           </a>
           <button
