@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 function Notes(props) {
     const context = useContext(NoteContext);
     const { notes, getNote, editNote } = context;
-    const [enote, setenote] = useState({ id: "", title: "", description: "", tag: "default" })
+    const [enote, setenote] = useState({ id: "", title: "", description: "", tag: "default", image: ""})
     const navigate = useNavigate();
     const [search, setSearch] = useState("")
     const [sort, setSort] = useState("newest");

@@ -8,7 +8,20 @@ function AddNote(props)
     const context = useContext(NoteContext);
     const {addNote, getNote} = context;
 
-    const [note, setnote] = useState({ title: "", description: "", tag: "Todo" })
+    const [note, setnote] = useState({ title: "", description: "", tag: "Todo", image: ""})
+
+    function convertToBase64(e) {
+       var reader = new FileReader();
+       reader.readAsDataURL(e.target.files[0]);
+       reader.onload = () => {
+           console.log(reader.result);
+           setnote({image: reader.result});
+        //    note.image = reader.result;
+       };
+       reader.onerror = error => {
+           console.log("Error: ", error);
+       };
+    }
 
     const navigate = useNavigate();
     
@@ -19,8 +32,8 @@ function AddNote(props)
     
     const handleClick=(e)=>{
         e.preventDefault(); 
-        addNote(note.title, note.description, note.tag)
-        setnote({  title: "", description: "", tag: ""})
+        addNote(note.title, note.description, note.tag, note.image)
+        setnote({  title: "", description: "", tag: "", image: ""})
         props.showAlert("Note added successfully", "success")
     }
 
@@ -59,6 +72,9 @@ function AddNote(props)
                 <div className="mb-3">
                     <label htmlFor="description" className="form-label">Description</label>
                     <textarea className="form-control" id="description" name="description"  value={note.description} onChange={onchange} rows="3"></textarea>
+                </div>
+                <div>
+                    <input accept="image/*" type="file" onChange={convertToBase64} />
                 </div>
                 <div className='text-center'>
                     <button className='btn btn-primary' onClick={handleClick}>Add Note</button>

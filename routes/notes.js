@@ -42,6 +42,7 @@ router.post(
         title: req.body.title,
         description: req.body.description,
         tag: req.body.tag,
+        image:req.body.image,
         date:Date.now()
       });
       res.send(note);

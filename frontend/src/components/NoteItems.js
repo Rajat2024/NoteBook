@@ -30,6 +30,7 @@ function NoteItems(props) {
                     </div>
                     <p><b>{note.tag}</b></p>
                     <p className="card-text">{note.description}</p>
+                    <img width="100%" src={note.image} alt="" />
                     <p className='text-secondary small text-end '>
                         <small>{date} </small>
                     </p>

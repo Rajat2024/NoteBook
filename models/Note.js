@@ -24,6 +24,9 @@ const noteSchema = new Schema({
     date:{
         type:Date,
         default: Date.now
+    },
+    image:{
+        type: String
     }
   
 });
