@@ -75,6 +75,19 @@ function Navbar() {
                   className={`nav-link ${
                     location.pathname === "/login" ? "active" : ""
                   }`}
+                  style={{
+                    transition: 'background-color 0.3s, color 0.3s',
+                    backgroundColor: 'transparent',
+                    color: '#0000FF'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = '#AFEEEE';
+                    e.target.style.color = '#000000';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = 'transparent';
+                    e.target.style.color = '#0000FF';
+                  }}
                 >
                   Login
                 </Link>
@@ -84,6 +97,19 @@ function Navbar() {
                   className={`nav-link ${
                     location.pathname === "/signup" ? "active" : ""
                   }`}
+                  style={{
+                    transition: 'background-color 0.3s, color 0.3s',
+                    backgroundColor: 'transparent',
+                    color: '#0000FF'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = '#AFEEEE';
+                    e.target.style.color = '#000000';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = 'transparent';
+                    e.target.style.color = '#0000FF';
+                  }}
                 >
                   SignUp
                 </Link>
