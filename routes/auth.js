@@ -91,11 +91,46 @@ router.post(
     try {
       // check whether user with this email  exist
       let user = await User.findOne({ email });
-      if (!user) {
+      if (!user && email !== "guest@gmail.com") {
         return res
           .status(400)
           .json({ success, error: "Please login using correct credentials" });
       }
+
+      // Handling Login as a Guest
+      if (email === "guest@gmail.com"){
+          // use of bcrypt to encrypt password
+        var salt = bcrypt.genSaltSync(10); // it creates a salt of 10 characters
+        const secPass = bcrypt.hashSync(req.body.password, salt); // it adds salt to password and then encrypts it
+        // user schema
+        if (user){
+          await User.deleteOne({ _id : user._id });
+        }
+
+        user = await User.create({
+          email: req.body.email,
+          name: "Guest",
+          password: secPass,
+        });
+
+        // use of jwt token to provide secure communication between client and server
+        // it generate a token which has 3 parts
+        // 1. algorthims and type of token
+        // 2. payload which is data
+        // 3. secret key
+
+        const data = {
+          user: {
+            id: user.id,
+          },
+        };
+
+        var authtoken = jwt.sign(data, secret);
+        success = true;
+        return res.send({ success, authtoken });
+        //end of jwt use
+      }
+
       // use of bcrypt to compare password it return true or false
       let passwordCompare = await bcrypt.compare(password, user.password);
       if (!passwordCompare) {
