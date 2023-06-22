@@ -9,7 +9,7 @@
 /coverage
 
 # production
-.env
+#.env
 notes.txt
 commands of git.txt
 
