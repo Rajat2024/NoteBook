@@ -27,7 +27,7 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=5000
-      - MONGO_URL=mongodb+srv://rohanrustagi21:2uze6GF299kNrnBg@cluster0.hfi4hxs.mongodb.net/?retryWrites=true&w=majority # Change this to match your MongoDB connection URL
+      - MONGO_URL=your_mongo_url # Change this to match your MongoDB connection URL
     depends_on:
       - mongo
 
