@@ -1,6 +1,7 @@
 version: '3.8'
 services:
   frontend:
+    container_name: cfy_client
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -10,11 +11,12 @@ services:
       - './frontend:/app'
     environment:
       - NODE_ENV=production
-      - REACT_APP_API_URL=http://172.18.0.2:5000 # Change this to match your backend API URL
+      - REACT_APP_API_URL=http://localhost:5000 # Change this to match your backend API URL
     depends_on:
       - backend
 
   backend:
+    container_name: cfy_server
     build:
       context: .
       dockerfile: Dockerfile
