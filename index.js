@@ -6,6 +6,7 @@ const path= require('path');
 var cors = require('cors');
 
 dotenv.config(); 
+//  is typically used to load and configure environment variables from a .env file in a Node.js application.
 
 connectToMongo();// connecting to database
 
