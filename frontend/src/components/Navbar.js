@@ -10,15 +10,20 @@ function Navbar(props) {
   const { userName } = context;
 
   const handleLogout = () => {
-    Cookies.remove('authtoken');
-        navigate("/login");
+    Cookies.remove("authtoken");
+    navigate("/login");
     props.showAlert("Logged out successfully", "success");
   };
   return (
     <div>
       <nav
         className="navbar navbar-expand-lg navbar-light"
-        style={{ backgroundColor: "#e3f2fd", opacity: "70%" }}
+        style={{
+          backgroundColor: "#e3f2fd",
+          opacity: "70%",
+          position: "fixed",
+          width: "100vw",
+        }}
       >
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
