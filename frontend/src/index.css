@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background:linear-gradient(0.40turn, #3f87a6, #ebf8e1, #3f87a6), fixed; 
+  background: linear-gradient(0.4turn, #3f87a6, #ebf8e1, #3f87a6), fixed;
 }
 
 code {
@@ -13,16 +13,16 @@ code {
     monospace;
 }
 
-i{
+i {
   cursor: pointer;
-  font-size:15px;
+  font-size: 15px;
 }
 
-button{
-  cursor:pointer;
+button {
+  cursor: pointer;
 }
 
-.last-para{
-  color:blue;
-  font-size: 12px;;
+.last-para {
+  color: blue;
+  font-size: 12px;
 }

@@ -1,29 +1,27 @@
-import React, { useContext, useState } from "react";
+import React, {useContext, useState} from "react";
 import NoteContext from "../context/notes/noteContext";
-import { useNavigate, Link, useLocation } from "react-router-dom";
-import Cookies from 'js-cookie';
+import {useNavigate, Link, useLocation} from "react-router-dom";
+import Cookies from "js-cookie";
 
 function Login(props) {
   const location = useLocation();
 
   const context = useContext(NoteContext);
-  const { fetchData } = context;
+  const {fetchData} = context;
 
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [credentials, setCredentials] = useState({email: "", password: ""});
   const [load, setLoad] = useState(false); // for loading spinner
   let navigate = useNavigate();
 
   const onchange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+    setCredentials({...credentials, [e.target.name]: e.target.value});
   };
   const handleClick2 = async () => {
     setLoad(false);
   };
   const handleClick = async () => {
-    if(credentials.email==="" || credentials.password==="")
-    setLoad(false);
-    else
-    setLoad(true);
+    if (credentials.email === "" || credentials.password === "") setLoad(false);
+    else setLoad(true);
 
     const response = await fetch("api/auth/login", {
       method: "POST",
@@ -35,9 +33,9 @@ function Login(props) {
         password: credentials.password,
       }),
     });
-    
+
     const json = await response.json();
-    
+
     // console.log(json);
     if (json.success) {
       // localStorage.setItem("token", json.authtoken);
@@ -52,15 +50,14 @@ function Login(props) {
   };
 
   return (
-    <div>
+    <div className="main_page_div">
       <div className="text-center my-4">
         <h1>NOTEBOOK</h1>
         <p>
           <b>Your notes on cloud ☁️</b>
         </p>
       </div>
-
-      <div className="container my-5">
+      <div className="container">
         <p className="text-center">
           <i>Login to continue using Notebook 😊 </i>
         </p>
@@ -98,7 +95,7 @@ function Login(props) {
             Login
           </button>
         ) : (
-          <button className="btn btn-primary" type="button" disabled >
+          <button className="btn btn-primary" type="button" disabled>
             <span
               className="spinner-border spinner-border-sm"
               role="status"
