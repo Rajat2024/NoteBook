@@ -4,7 +4,7 @@
 node_modules
 /.pnp
 .pnp.js
-package-lock.json
+# package-lock.json
 # testing
 /coverage
 
@@ -14,10 +14,10 @@ notes.txt
 commands of git.txt
 
 SECURITY.md
-# README.md
+README.md
 LICENSE
-contributing.md
-CODE_OF_CONDUCT.md
+# contributing.md
+# CODE_OF_CONDUCT.md
 
 # misc
 .DS_Store
