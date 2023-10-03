@@ -1,14 +1,1 @@
 previewsEnabled: true
-services:
-- type: web
-  plan: standard
-  previewPlan: starter  name: express-server
-  runtime: node
-- type: redis
-  plan: standard
-  previewPlan: starter  name: private redis
-  ipAllowList: [] # only allow internal connections
-databases:
-- name: my_test_db
-  plan: standard
-  previewPlan: starter
