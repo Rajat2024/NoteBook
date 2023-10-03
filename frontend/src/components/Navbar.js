@@ -18,12 +18,7 @@ function Navbar(props) {
     <div>
       <nav
         className="navbar navbar-expand-lg navbar-light"
-        style={{
-          backgroundColor: "#e3f2fd",
-          opacity: "70%",
-          position: "fixed",
-          width: "100vw",
-        }}
+             style={{ backgroundColor: "#e3f2fd", opacity: "70%" }}
       >
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
