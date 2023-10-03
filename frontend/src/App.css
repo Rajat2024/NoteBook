@@ -1,5 +1,11 @@
-body{
+body {
   font-family: cursive;
+  height: 100%;
+  min-height: 100vh;
+  background: #FF5F6D;
+  background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D);
+  background: linear-gradient(to right, #FFC371, #FF5F6D);
+  background-repeat: no-repeat;
 }
 
 .App-logo {
@@ -28,10 +34,56 @@ body{
   color: #61dafb;
 }
 
+.nav-item {
+  margin: 0 2rem;
+  border-bottom: 2px solid #f8a42f;
+}
+
+form .nav-link {
+  margin: 0 1rem;
+  border: 2px solid #FF5F6D;
+  border-radius: 5rem;
+  padding: .4rem 1.6rem;
+}
+
+form .nav-link:nth-child(1) {
+  background: #FF5F6D;
+  width: 6rem;
+  margin: auto;
+  color: #fff;
+  letter-spacing: .14rem;
+}
+
+.form_div {
+  width: 100%;
+  margin: 2rem 0;
+  display: grid;
+  place-items: center;
+}
+
+.form-control {
+  margin: .4rem 0;
+  border-radius: 5rem;
+  padding: .6rem 1.4rem;
+  width: 60% !important;
+}
+
+.form_div .form-label {
+  position: relative;
+
+}
+
+.btn_icon {
+  letter-spacing: .12rem;
+  border-radius: 5rem;
+  padding: .8rem 2.6rem;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -41,22 +93,44 @@ body{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 16px; /* Adjust the gap between shimmer cards as needed */
+  gap: 16px;
+  /* Adjust the gap between shimmer cards as needed */
 }
 
 .shimmer-card {
-  width: 30%; /* Adjust the width of each shimmer card as needed */
-  height: 200px; /* Adjust the height of each shimmer card as needed */
+  width: 30%;
+  /* Adjust the width of each shimmer card as needed */
+  height: 200px;
+  /* Adjust the height of each shimmer card as needed */
   background: linear-gradient(-90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;
+  background-repeat: no-repeat;
   animation: shimmer 1.5s infinite linear;
-  border-radius: 8px; /* Add rounded corners if desired */
+  border-radius: 8px;
+  /* Add rounded corners if desired */
+}
+
+
+i {
+  cursor: pointer;
+  font-size: 15px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.last-para {
+  color: #282c34;
+  font-weight: 500;
+  font-size: 12px;
 }
 
 @keyframes shimmer {
   0% {
     background-position: 200% 0;
   }
+
   100% {
     background-position: -200% 0;
   }

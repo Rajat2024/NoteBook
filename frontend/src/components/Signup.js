@@ -71,7 +71,7 @@ function SignUp(props) {
           <p className="text-center my-3">
             <i>New to Notebook? 👉🏻Create a new account here! </i>
           </p>
-          <div className="mb-3 ">
+          <div className="mb-3 form_div">
             <label htmlFor="email" className="form-label">
               Email address
             </label>
@@ -85,7 +85,7 @@ function SignUp(props) {
               required
             />
           </div>
-          <div className="mb-3 ">
+          <div className="mb-3 form_div">
             <label htmlFor="name" className="form-label">
               Name
             </label>
@@ -99,7 +99,7 @@ function SignUp(props) {
               required
             />
           </div>
-          <div className="mb-3 ">
+          <div className="mb-3 form_div">
             <label htmlFor="password" className="form-label">
               Password
             </label>
@@ -114,7 +114,7 @@ function SignUp(props) {
               required
             />
           </div>
-          <div className="mb-3 ">
+          <div className="mb-3 form_div">
             <label htmlFor="cpassword" className="form-label">
               Confirm Password
             </label>
@@ -151,7 +151,7 @@ function SignUp(props) {
           Already have an account?{" "}
           <Link
             to="/login"
-            className={`nav-link ${
+            className={`nav-link mt-3 ${
               location.pathname === "/login" ? "active" : ""
             }`}
           >

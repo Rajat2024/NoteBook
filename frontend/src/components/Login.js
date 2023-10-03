@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import NoteContext from "../context/notes/noteContext";
 import { useNavigate, Link, useLocation } from "react-router-dom";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 function Login(props) {
   const location = useLocation();
@@ -20,10 +20,8 @@ function Login(props) {
     setLoad(false);
   };
   const handleClick = async () => {
-    if(credentials.email==="" || credentials.password==="")
-    setLoad(false);
-    else
-    setLoad(true);
+    if (credentials.email === "" || credentials.password === "") setLoad(false);
+    else setLoad(true);
 
     const response = await fetch("api/auth/login", {
       method: "POST",
@@ -35,9 +33,9 @@ function Login(props) {
         password: credentials.password,
       }),
     });
-    
+
     const json = await response.json();
-    
+
     // console.log(json);
     if (json.success) {
       // localStorage.setItem("token", json.authtoken);
@@ -64,7 +62,7 @@ function Login(props) {
         <p className="text-center">
           <i>Login to continue using Notebook 😊 </i>
         </p>
-        <div className="mb-3 ">
+        <div className="mb-3 form_div">
           <label htmlFor="email" className="form-label">
             Email address
           </label>
@@ -78,7 +76,7 @@ function Login(props) {
           />
         </div>
 
-        <div className="mb-3 ">
+        <div className="mb-3 form_div">
           <label htmlFor="password" className="form-label">
             Password
           </label>
@@ -94,11 +92,11 @@ function Login(props) {
       </div>
       <div className="text-center">
         {!load ? (
-          <button className="btn btn-primary" onClick={handleClick}>
+          <button className="btn_icon" onClick={handleClick}>
             Login
           </button>
         ) : (
-          <button className="btn btn-primary" type="button" disabled >
+          <button className="btn_icon" type="button" disabled>
             <span
               className="spinner-border spinner-border-sm"
               role="status"
