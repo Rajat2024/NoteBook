@@ -10,25 +10,25 @@ dotenv.config();
 
 connectToMongo(); // connecting to database
 
-const dateTimeObject = new Date("yourInputDateInASuitableFormat").toLocaleString("en-US", {timeZone: 'Asia/Kolkata'});
-console.log("Server started at:-");
-console.log("");
-console.log(
-  "-------------------------------------------------------------------------------------"
-);
-console.log(
-  "-------------------------------------------------------------------------------------"
-);
+// const dateTimeObject = new Date("yourInputDateInASuitableFormat").toLocaleString("en-US", {timeZone: 'Asia/Kolkata'});
+// console.log("Server started at:-");
+// console.log("");
+// console.log(
+//   "-------------------------------------------------------------------------------------"
+// );
+// console.log(
+//   "-------------------------------------------------------------------------------------"
+// );
 
-console.log(`Date: ${dateTimeObject.toDateString()}`);
-console.log(`Time: ${dateTimeObject.toTimeString()}`);
-console.log(
-  "-------------------------------------------------------------------------------------------------------"
-);
-console.log(
-  "-------------------------------------------------------------------------------------"
-);
-console.log("");
+// console.log(`Date: ${dateTimeObject.toDateString()}`);
+// console.log(`Time: ${dateTimeObject.toTimeString()}`);
+// console.log(
+//   "-------------------------------------------------------------------------------------------------------"
+// );
+// console.log(
+//   "-------------------------------------------------------------------------------------"
+// );
+// console.log("");
 
 const app = express();
 app.use(cors()); //  Calling use(cors()) will enable the express server to respond to requests(put ,post ,delete,get).
