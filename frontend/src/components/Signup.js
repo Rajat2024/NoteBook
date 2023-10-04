@@ -1,4 +1,4 @@
-import React, { useContext,useState } from "react";
+import React, { useContext, useState } from "react";
 import NoteContext from "../context/notes/noteContext";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 
@@ -9,7 +9,7 @@ function SignUp(props) {
     password: "",
     cpassword: "",
   });
-  
+
   const context = useContext(NoteContext);
   const { fetchData } = context;
 
@@ -23,6 +23,7 @@ function SignUp(props) {
   };
 
   const handleClick = async (e) => {
+    console.log(e);
     e.preventDefault();
     const { email, name, password } = credentials;
     //
@@ -122,6 +123,11 @@ function SignUp(props) {
               type="password"
               className="form-control"
               onChange={onchange}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  handleClick(event);
+                }
+              }}
               id="cpassword"
               name="cpassword"
               minLength={5}

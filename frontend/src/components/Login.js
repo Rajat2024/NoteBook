@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import NoteContext from "../context/notes/noteContext";
 import { useNavigate, Link, useLocation } from "react-router-dom";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 function Login(props) {
   const location = useLocation();
@@ -20,10 +20,8 @@ function Login(props) {
     setLoad(false);
   };
   const handleClick = async () => {
-    if(credentials.email==="" || credentials.password==="")
-    setLoad(false);
-    else
-    setLoad(true);
+    if (credentials.email === "" || credentials.password === "") setLoad(false);
+    else setLoad(true);
 
     const response = await fetch("api/auth/login", {
       method: "POST",
@@ -35,9 +33,9 @@ function Login(props) {
         password: credentials.password,
       }),
     });
-    
+
     const json = await response.json();
-    
+
     // console.log(json);
     if (json.success) {
       // localStorage.setItem("token", json.authtoken);
@@ -86,6 +84,9 @@ function Login(props) {
             type="password"
             className="form-control"
             onChange={onchange}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleClick();
+            }}
             id="password"
             name="password"
             placeholder="guest123"
@@ -98,7 +99,7 @@ function Login(props) {
             Login
           </button>
         ) : (
-          <button className="btn btn-primary" type="button" disabled >
+          <button className="btn btn-primary" type="button" disabled>
             <span
               className="spinner-border spinner-border-sm"
               role="status"
