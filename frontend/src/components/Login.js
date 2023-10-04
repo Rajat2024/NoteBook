@@ -1,20 +1,20 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import NoteContext from "../context/notes/noteContext";
-import {useNavigate, Link, useLocation} from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
 
 function Login(props) {
   const location = useLocation();
 
   const context = useContext(NoteContext);
-  const {fetchData} = context;
+  const { fetchData } = context;
 
-  const [credentials, setCredentials] = useState({email: "", password: ""});
+  const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [load, setLoad] = useState(false); // for loading spinner
   let navigate = useNavigate();
 
   const onchange = (e) => {
-    setCredentials({...credentials, [e.target.name]: e.target.value});
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
   const handleClick2 = async () => {
     setLoad(false);
@@ -50,14 +50,15 @@ function Login(props) {
   };
 
   return (
-    <div className="main_page_div">
+    <div>
       <div className="text-center my-4">
         <h1>NOTEBOOK</h1>
         <p>
           <b>Your notes on cloud ☁️</b>
         </p>
       </div>
-      <div className="container">
+
+      <div className="container my-5">
         <p className="text-center">
           <i>Login to continue using Notebook 😊 </i>
         </p>
@@ -83,6 +84,9 @@ function Login(props) {
             type="password"
             className="form-control"
             onChange={onchange}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleClick();
+            }}
             id="password"
             name="password"
             placeholder="guest123"
