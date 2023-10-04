@@ -33,13 +33,15 @@ function App() {
     <>
       <NoteState>
         <BrowserRouter>
-          <Navbar showAlert={showAlert} />
+          <div className="navbar_div">
+            <Navbar showAlert={showAlert} />
+          </div>
 
           <Alert alert={alert} />
           {!isOnline ? (
             <Appp />
           ) : (
-            <div className="container">
+            <div className="main_page_content_div">
               <Routes>
                 <Route
                   path="/notes"
@@ -61,7 +63,9 @@ function App() {
               </Routes>
             </div>
           )}
-          <Footer />
+          <div className="footer_div">
+            <Footer />
+          </div>
         </BrowserRouter>
       </NoteState>
     </>

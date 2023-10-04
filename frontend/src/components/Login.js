@@ -1,20 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, {useContext, useState} from "react";
 import NoteContext from "../context/notes/noteContext";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import {useNavigate, Link, useLocation} from "react-router-dom";
 import Cookies from "js-cookie";
 
 function Login(props) {
   const location = useLocation();
 
   const context = useContext(NoteContext);
-  const { fetchData } = context;
+  const {fetchData} = context;
 
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [credentials, setCredentials] = useState({email: "", password: ""});
   const [load, setLoad] = useState(false); // for loading spinner
   let navigate = useNavigate();
 
   const onchange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+    setCredentials({...credentials, [e.target.name]: e.target.value});
   };
   const handleClick2 = async () => {
     setLoad(false);
@@ -50,7 +50,7 @@ function Login(props) {
   };
 
   return (
-    <div>
+    <div className="container">
       <div className="text-center my-4">
         <h1>NOTEBOOK</h1>
         <p>

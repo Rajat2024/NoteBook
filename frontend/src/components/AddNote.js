@@ -1,34 +1,37 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, {useContext, useState, useEffect} from "react";
 
 import NoteContext from "../context/notes/noteContext";
 
-import { useNavigate, Link, useLocation } from "react-router-dom";
-import Cookies from 'js-cookie';
+import {useNavigate, Link, useLocation} from "react-router-dom";
+import Cookies from "js-cookie";
 function AddNote(props) {
   const location = useLocation();
 
-  const context = useContext(NoteContext); 
-  const { addNote, getNote } = context;
+  const context = useContext(NoteContext);
+  const {addNote, getNote} = context;
 
-  const [note, setnote] = useState({ title: "", description: "", tag: "Todo" });
+  const [note, setnote] = useState({title: "", description: "", tag: "Todo"});
 
   const navigate = useNavigate();
 
   const onchange = (e) => {
-    setnote({ ...note, [e.target.name]: e.target.value });
+    setnote({...note, [e.target.name]: e.target.value});
   };
 
   const handleClick = (e) => {
     e.preventDefault(); //to prevent page from reloading
     if (note.title.length < 3 && note.description.length < 5) {
-      props.showAlert( "Add minimum 3 Character in title and 5 in description", "warning" );
+      props.showAlert(
+        "Add minimum 3 Character in title and 5 in description",
+        "warning"
+      );
     } else if (note.title.length < 3) {
       props.showAlert("Add minimum 3 Character in Title", "warning");
     } else if (note.description.length < 5) {
       props.showAlert("Add minimum 5 Character in Description", "warning");
     } else {
       addNote(note.title, note.description, note.tag);
-      setnote({ title: "", description: "", tag: "" });
+      setnote({title: "", description: "", tag: ""});
       props.showAlert("Note added successfully", "success");
     }
   };
@@ -36,7 +39,7 @@ function AddNote(props) {
   useEffect(() => {
     //if user is not logged in then redirect to login page
     // console.log("ok", Cookies.get('authtoken'));
-    if (Cookies.get('authtoken')!= undefined) {
+    if (Cookies.get("authtoken") != undefined) {
       // console.log("I am from addnote component", Cookies.get('authtoken'));
       // getNote();
     } else {
@@ -46,7 +49,7 @@ function AddNote(props) {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <div className="my-4">
         <div className="text-center">
           <h3>✍🏻 Add A New Note:</h3>

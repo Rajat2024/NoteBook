@@ -1,15 +1,15 @@
 // what is use of useRef in this project?????????????????
 
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import NoteContext from "../context/notes/noteContext";
 import EditNote from "./EditNote";
 import NoteItems from "./NoteItems";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Cookies from "js-cookie";
 import Shimmer from "./Shimmer";
 function Notes(props) {
   const context = useContext(NoteContext);
-  const { notes, getNote, editNote } = context;
+  const {notes, getNote, editNote} = context;
 
   const [enote, setenote] = useState({
     id: "",
@@ -39,7 +39,7 @@ function Notes(props) {
   };
 
   const onchange = (e) => {
-    setenote({ ...enote, [e.target.name]: e.target.value });
+    setenote({...enote, [e.target.name]: e.target.value});
   };
 
   const handleEdit = (e) => {
@@ -52,8 +52,8 @@ function Notes(props) {
 
   return notes.length === 0 ? (
     <>
-      <div className="my-5">
-        <div>
+      <div className="container">
+        <div className="text-center my-4">
           <h3>🧾 Your Notes:</h3>
         </div>
       </div>
@@ -61,34 +61,34 @@ function Notes(props) {
     </>
   ) : (
     <>
-      <div className="my-5">
-        <div>
+      <div className="container">
+        <div className="text-center my-4">
           <h3>🧾 Your Notes:</h3>
         </div>
-      </div>
 
-      <EditNote
-        reference={ref}
-        closeref={refclose}
-        enote={enote}
-        onchange={onchange}
-        handleChange={handleEdit}
-      />
+        <EditNote
+          reference={ref}
+          closeref={refclose}
+          enote={enote}
+          onchange={onchange}
+          handleChange={handleEdit}
+        />
 
-      <div className="row mb-5">
-        <div className="mx-3">
-          {notes.length === 0 && "No notes to display.."}
+        <div className="row mb-5">
+          <div className="mx-3">
+            {notes.length === 0 && "No notes to display.."}
+          </div>
+          {notes.map((note) => {
+            return (
+              <NoteItems
+                key={note._id}
+                note={note}
+                updateNote={updateNote}
+                showAlert={props.showAlert}
+              />
+            );
+          })}
         </div>
-        {notes.map((note) => {
-          return (
-            <NoteItems
-              key={note._id}
-              note={note}
-              updateNote={updateNote}
-              showAlert={props.showAlert}
-            />
-          );
-        })}
       </div>
     </>
   );

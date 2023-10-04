@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, {useContext, useState} from "react";
 import NoteContext from "../context/notes/noteContext";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import {useNavigate, useLocation, Link} from "react-router-dom";
 
 function SignUp(props) {
   const [credentials, setCredentials] = useState({
@@ -11,13 +11,13 @@ function SignUp(props) {
   });
 
   const context = useContext(NoteContext);
-  const { fetchData } = context;
+  const {fetchData} = context;
 
   const [load, setLoad] = useState(false); // for loading spinner
   let navigate = useNavigate();
   const location = useLocation();
   const onchange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+    setCredentials({...credentials, [e.target.name]: e.target.value});
 
     // const { password, cpassword } = credentials;
   };
@@ -25,7 +25,7 @@ function SignUp(props) {
   const handleClick = async (e) => {
     console.log(e);
     e.preventDefault();
-    const { email, name, password } = credentials;
+    const {email, name, password} = credentials;
     //
     let pass = document.querySelector("#password").value; // getting password and confirm password
     let cpass = document.querySelector("#cpassword").value;
@@ -36,7 +36,7 @@ function SignUp(props) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, name, password }),
+        body: JSON.stringify({email, name, password}),
       });
       setLoad(false);
       const json = await response.json();
@@ -60,111 +60,113 @@ function SignUp(props) {
 
   return (
     <>
-      <div className="text-center">
-        <h1>NOTEBOOK</h1>
-        <p>
-          <b>Your notes on cloud ☁️</b>
-        </p>
-      </div>
-
-      <form onSubmit={handleClick}>
-        <div className="container my-5">
-          <p className="text-center my-3">
-            <i>New to Notebook? 👉🏻Create a new account here! </i>
-          </p>
-          <div className="mb-3 ">
-            <label htmlFor="email" className="form-label">
-              Email address
-            </label>
-            <input
-              type="email"
-              className="form-control"
-              onChange={onchange}
-              id="email"
-              name="email"
-              placeholder="name@example.com"
-              required
-            />
-          </div>
-          <div className="mb-3 ">
-            <label htmlFor="name" className="form-label">
-              Name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              onChange={onchange}
-              id="name"
-              name="name"
-              placeholder="Enter your name"
-              required
-            />
-          </div>
-          <div className="mb-3 ">
-            <label htmlFor="password" className="form-label">
-              Password
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              onChange={onchange}
-              id="password"
-              name="password"
-              minLength={5}
-              placeholder="Password must be atleast of 5 characters"
-              required
-            />
-          </div>
-          <div className="mb-3 ">
-            <label htmlFor="cpassword" className="form-label">
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              onChange={onchange}
-              onKeyDown={(event) => {
-                if (event.key === "Enter") {
-                  handleClick(event);
-                }
-              }}
-              id="cpassword"
-              name="cpassword"
-              minLength={5}
-              placeholder="Confirm Password"
-              required
-            />
-          </div>
-        </div>
+      <div className="container">
         <div className="text-center">
-          {!load ? (
-            <button type="submit" className="btn btn-primary">
-              SignUp
-            </button>
-          ) : (
-            <button className="btn btn-primary" type="button" disabled>
-              <span
-                className="spinner-border spinner-border-sm"
-                role="status"
-                aria-hidden="true"
-              ></span>
-              Please Wait ...
-            </button>
-          )}
+          <h1>NOTEBOOK</h1>
+          <p>
+            <b>Your notes on cloud ☁️</b>
+          </p>
         </div>
-        <br />
-        <p className="text-center last-para">
-          Already have an account?{" "}
-          <Link
-            to="/login"
-            className={`nav-link ${
-              location.pathname === "/login" ? "active" : ""
-            }`}
-          >
-            Login
-          </Link>
-        </p>
-      </form>
+
+        <form onSubmit={handleClick}>
+          <div className="container my-5">
+            <p className="text-center my-3">
+              <i>New to Notebook? 👉🏻Create a new account here! </i>
+            </p>
+            <div className="mb-3 ">
+              <label htmlFor="email" className="form-label">
+                Email address
+              </label>
+              <input
+                type="email"
+                className="form-control"
+                onChange={onchange}
+                id="email"
+                name="email"
+                placeholder="name@example.com"
+                required
+              />
+            </div>
+            <div className="mb-3 ">
+              <label htmlFor="name" className="form-label">
+                Name
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                onChange={onchange}
+                id="name"
+                name="name"
+                placeholder="Enter your name"
+                required
+              />
+            </div>
+            <div className="mb-3 ">
+              <label htmlFor="password" className="form-label">
+                Password
+              </label>
+              <input
+                type="password"
+                className="form-control"
+                onChange={onchange}
+                id="password"
+                name="password"
+                minLength={5}
+                placeholder="Password must be atleast of 5 characters"
+                required
+              />
+            </div>
+            <div className="mb-3 ">
+              <label htmlFor="cpassword" className="form-label">
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                className="form-control"
+                onChange={onchange}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    handleClick(event);
+                  }
+                }}
+                id="cpassword"
+                name="cpassword"
+                minLength={5}
+                placeholder="Confirm Password"
+                required
+              />
+            </div>
+          </div>
+          <div className="text-center">
+            {!load ? (
+              <button type="submit" className="btn btn-primary">
+                SignUp
+              </button>
+            ) : (
+              <button className="btn btn-primary" type="button" disabled>
+                <span
+                  className="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+                Please Wait ...
+              </button>
+            )}
+          </div>
+          <br />
+          <p className="text-center last-para">
+            Already have an account?{" "}
+            <Link
+              to="/login"
+              className={`nav-link ${
+                location.pathname === "/login" ? "active" : ""
+              }`}
+            >
+              Login
+            </Link>
+          </p>
+        </form>
+      </div>
     </>
   );
 }
