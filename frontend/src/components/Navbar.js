@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React, {useContext} from "react";
 import NoteContext from "../context/notes/noteContext";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import {Link, useNavigate, useLocation} from "react-router-dom";
 import Cookies from "js-cookie";
 function Navbar(props) {
   const navigate = useNavigate();
   const location = useLocation();
 
   const context = useContext(NoteContext);
-  const { userName } = context;
+  const {userName} = context;
 
   const handleLogout = () => {
     Cookies.remove("authtoken");
@@ -15,10 +15,10 @@ function Navbar(props) {
     props.showAlert("Logged out successfully", "success");
   };
   return (
-    <div>
+    <div className="navbar_div">
       <nav
         className="navbar navbar-expand-lg navbar-light"
-             style={{ backgroundColor: "#e3f2fd", opacity: "70%" }}
+        style={{backgroundColor: "#e3f2fd", opacity: "70%"}}
       >
         <div className="container-fluid">
           <a className="navbar-brand" href="/">

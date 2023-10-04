@@ -13,6 +13,7 @@ import SignUp from "./components/Signup";
 import Login from "./components/Login";
 import useOnline from "./Hooks/useOnline";
 import Appp from "./Game/App.js";
+import Footer from "./components/Footer";
 
 function App() {
   // console.log(window.navigator);
@@ -60,6 +61,7 @@ function App() {
               </Routes>
             </div>
           )}
+          <Footer />
         </BrowserRouter>
       </NoteState>
     </>
