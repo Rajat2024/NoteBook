@@ -1,7 +1,7 @@
 // we export this to wrap the all the component of project to provide data 
 // data provider
 import NoteContext from "./noteContext";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Cookies from 'js-cookie';
 
 const NoteState = (props) => {
@@ -10,6 +10,11 @@ const NoteState = (props) => {
 
   const [notes, setnotes] = useState(notesInitial);
   const [userName, setName] = useState("");
+
+  // fetches userdata after initial render
+  useEffect(() => {
+    fetchData();
+  }, [])
 
   //fetch user Name
   const fetchData =  async() => {
