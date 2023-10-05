@@ -58,7 +58,7 @@ function Login(props) {
         </p>
       </div>
 
-      <div className="container my-5">
+      <div className="container my-5 " style={{display:'grid',justifyContent:'center'}}>
         <p className="text-center">
           <i>Login to continue using Notebook 😊 </i>
         </p>
@@ -67,7 +67,8 @@ function Login(props) {
             Email address
           </label>
           <input
-            type="email"
+            type="email" 
+            style={{width:300}}
             className="form-control"
             onChange={onchange}
             id="email"
@@ -82,7 +83,8 @@ function Login(props) {
           </label>
           <input
             type="password"
-            className="form-control"
+            style={{width:300}}
+            className="form-control "
             onChange={onchange}
             onKeyDown={(e) => {
               if (e.key === "Enter") handleClick();

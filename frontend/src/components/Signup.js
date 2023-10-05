@@ -60,7 +60,7 @@ function SignUp(props) {
 
   return (
     <>
-      <div className="text-center">
+      <div className="text-center ">
         <h1>NOTEBOOK</h1>
         <p>
           <b>Your notes on cloud ☁️</b>
@@ -68,7 +68,7 @@ function SignUp(props) {
       </div>
 
       <form onSubmit={handleClick}>
-        <div className="container my-5">
+        <div className="container my-5 mx-4" style={{display:'grid',justifyContent:'center'}}>
           <p className="text-center my-3">
             <i>New to Notebook? 👉🏻Create a new account here! </i>
           </p>
@@ -78,6 +78,7 @@ function SignUp(props) {
             </label>
             <input
               type="email"
+              style={{width:300}}
               className="form-control"
               onChange={onchange}
               id="email"
@@ -92,6 +93,7 @@ function SignUp(props) {
             </label>
             <input
               type="text"
+              style={{width:300}}
               className="form-control"
               onChange={onchange}
               id="name"
@@ -102,16 +104,17 @@ function SignUp(props) {
           </div>
           <div className="mb-3 ">
             <label htmlFor="password" className="form-label">
-              Password
+              Password <label style={{fontSize:10,color:'red'}}>(must be atleast of 5 characters)</label>
             </label>
             <input
               type="password"
+              style={{width:300}}
               className="form-control"
               onChange={onchange}
               id="password"
               name="password"
               minLength={5}
-              placeholder="Password must be atleast of 5 characters"
+              placeholder="Password "
               required
             />
           </div>
@@ -121,6 +124,7 @@ function SignUp(props) {
             </label>
             <input
               type="password"
+              style={{width:300}}
               className="form-control"
               onChange={onchange}
               onKeyDown={(event) => {
