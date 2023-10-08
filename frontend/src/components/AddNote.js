@@ -36,7 +36,7 @@ function AddNote(props) {
   useEffect(() => {
     //if user is not logged in then redirect to login page
     // console.log("ok", Cookies.get('authtoken'));
-    if (Cookies.get('authtoken')!= undefined) {
+    if (Cookies.get('authtoken')!== undefined) {
       // console.log("I am from addnote component", Cookies.get('authtoken'));
       // getNote();
     } else {

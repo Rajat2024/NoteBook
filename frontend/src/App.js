@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import About from "./components/About";
 import AddNote from "./components/AddNote";
 import Notes from "./components/Notes";
@@ -14,10 +14,22 @@ import Login from "./components/Login";
 import useOnline from "./Hooks/useOnline";
 import Appp from "./Game/App.js";
 
+
+
 function App() {
   // console.log(window.navigator);
 
   const [alert, setAlert] = useState(null);
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = (e) => {
+    e.preventDefault();
+    setDarkMode(!darkMode);
+    // document.body.classList.toggle("dark-mode", darkMode);
+    document.body.classList.toggle("dark-mode", !darkMode);
+  };
+ 
+
 
   const showAlert = (msg, type) => {
     setAlert({ msg: msg, type: type });
@@ -30,9 +42,10 @@ function App() {
 
   return (
     <>
+     
       <NoteState>
         <BrowserRouter>
-          <Navbar showAlert={showAlert} />
+          <Navbar showAlert={showAlert} darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
 
           <Alert alert={alert} />
           {!isOnline ? (
@@ -51,17 +64,18 @@ function App() {
                 />
                 <Route
                   path="/login"
-                  element={<Login showAlert={showAlert} />}
+                  element={<Login showAlert={showAlert} darkMode={darkMode}/>}
                 />
                 <Route
                   path="/signup"
-                  element={<SignUp showAlert={showAlert} />}
+                  element={<SignUp showAlert={showAlert} darkMode={darkMode}/>}
                 />
               </Routes>
             </div>
           )}
         </BrowserRouter>
       </NoteState>
+     
     </>
   );
 }

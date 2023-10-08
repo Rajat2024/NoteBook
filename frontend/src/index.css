@@ -1,3 +1,7 @@
+:root {
+  --light-background: linear-gradient(0.40turn, #3f87a6, #ebf8e1, #3f87a6) fixed;
+  --dark-background: linear-gradient(0.40turn, #0c2d48, #1a1a1a, #0c2d48) fixed;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +9,28 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background:linear-gradient(0.40turn, #3f87a6, #ebf8e1, #3f87a6), fixed; 
+  /* background:linear-gradient(0.40turn, #3f87a6, #ebf8e1, #3f87a6), fixed;  */
+/* background: linear-gradient(0.40turn, #0c2d48, #1a1a1a, #0c2d48);  */
+  background: var(--light-background);  
+  
 }
 
+.light-mode {
+  background: linear-gradient(0.40turn, #3f87a6, #ebf8e1, #3f87a6) ;
+}
+
+.dark-mode {
+  background: linear-gradient(0.40turn, #0c2d48, #1a1a1a, #0c2d48) ;
+  color: white;
+}
+.dark-signup{
+  
+  color: lightskyblue;
+
+}
+.signup{
+  color: #0a58ca;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -26,3 +49,24 @@ button{
   color:blue;
   font-size: 12px;;
 }
+.dark-lastpara{
+  color: lightblue;
+  font-size: 12px;;
+}
+
+.button-style{
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+.button-style:hover {
+  background-color: transparent; /* Set the background to transparent or any other desired background color */
+  color: inherit; /* Inherit the text color from parent */
+ 
+}
+
+

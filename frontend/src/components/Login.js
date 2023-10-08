@@ -3,6 +3,7 @@ import NoteContext from "../context/notes/noteContext";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import Cookies from 'js-cookie';
 
+
 function Login(props) {
   const location = useLocation();
 
@@ -52,8 +53,8 @@ function Login(props) {
   };
 
   return (
-    <div>
-      <div className="text-center my-4">
+    <>
+      <div className="text-center my-4 ">
         <h1>NOTEBOOK</h1>
         <p>
           <b>Your notes on cloud ☁️</b>
@@ -109,18 +110,18 @@ function Login(props) {
         )}
       </div>
       <br />
-      <p className="text-center last-para">
+      <p className={`text-center ${props.darkMode?"dark-lastpara":"last-para"}`}>
         Don't have an account?{" "}
         <Link
           to="/signup"
-          className={`nav-link ${
+          className={`nav-link ${props.darkMode? "dark-signup": "signup"} ${
             location.pathname === "/signup" ? "active" : ""
           }`}
         >
           SignUp
         </Link>{" "}
       </p>
-    </div>
+    </>
   );
 }
 

@@ -2,6 +2,7 @@ import React, { useContext,useState } from "react";
 import NoteContext from "../context/notes/noteContext";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 
+
 function SignUp(props) {
   const [credentials, setCredentials] = useState({
     email: "",
@@ -12,6 +13,7 @@ function SignUp(props) {
   
   const context = useContext(NoteContext);
   const { fetchData } = context;
+
 
   const [load, setLoad] = useState(false); // for loading spinner
   let navigate = useNavigate();
@@ -59,7 +61,7 @@ function SignUp(props) {
 
   return (
     <>
-      <div className="text-center">
+      <div className={`text-center `}>
         <h1>NOTEBOOK</h1>
         <p>
           <b>Your notes on cloud ☁️</b>
@@ -147,11 +149,11 @@ function SignUp(props) {
           )}
         </div>
         <br />
-        <p className="text-center last-para">
+        <p className={`text-center last-para ${props.darkMode?"dark-lastpara":"last-para"}`}>
           Already have an account?{" "}
           <Link
             to="/login"
-            className={`nav-link ${
+            className={`nav-link ${props.darkMode? "dark-signup": "signup"} ${
               location.pathname === "/login" ? "active" : ""
             }`}
           >

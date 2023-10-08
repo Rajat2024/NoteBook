@@ -2,12 +2,16 @@ import React, { useContext } from "react";
 import NoteContext from "../context/notes/noteContext";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
+import { BsFillMoonStarsFill, BsSunFill } from "react-icons/bs";
+
+
 function Navbar(props) {
   const navigate = useNavigate();
   const location = useLocation();
 
   const context = useContext(NoteContext);
   const { userName } = context;
+
 
   const handleLogout = () => {
     Cookies.remove("authtoken");
@@ -71,9 +75,17 @@ function Navbar(props) {
                   About{" "}
                 </Link>
               </li>
+              <li className="nav-item">
+                
+              </li>
             </ul>
             {!Cookies.get("authtoken") ? (
               <form className="d-flex">
+                <div className="nav-link">
+                  {
+                    props.darkMode ? <button className="button-style" onClick={props.toggleDarkMode}><BsSunFill/></button>:<button className="button-style" onClick={props.toggleDarkMode}><BsFillMoonStarsFill/></button>
+                  }
+                </div>
                 <Link
                   to="/login"
                   className={`nav-link ${
