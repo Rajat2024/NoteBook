@@ -10,7 +10,7 @@ import Shimmer from "./Shimmer";
 function Notes(props) {
   const context = useContext(NoteContext);
   const { notes, getNote, editNote } = context;
-
+  const [show,setshow]=useState(true);
   const [enote, setenote] = useState({
     id: "",
     title: "",
@@ -20,6 +20,10 @@ function Notes(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    setTimeout(()=>{
+      setshow(false);
+    },1000);
+
     if (Cookies.get("authtoken")) {
       // Schedule the sayHello function to execute after 2000 milliseconds (2 seconds)
       // setTimeout(getNote(), 2000);
@@ -50,7 +54,7 @@ function Notes(props) {
     props.showAlert("Note is updated successfully", "success");
   };
 
-  return notes.length === 0 ? (
+  return show ? (
     <>
       <div className="my-5">
         <div>
@@ -77,7 +81,7 @@ function Notes(props) {
 
       <div className="row mb-5">
         <div className="mx-3">
-          {notes.length === 0 && "No notes to display.."}
+          {notes.length === 0 && "Please add Notes, No notes to display.."}
         </div>
         {notes.map((note) => {
           return (
