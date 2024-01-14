@@ -12,6 +12,10 @@ const NoteState = (props) => {
   const [userName, setName] = useState("");
 
   //fetch user Name
+  useEffect(() => {
+    fetchData();
+  }, [])
+
   const fetchData =  async() => {
     try {
       const response = await fetch("/api/auth/getuser/", {
