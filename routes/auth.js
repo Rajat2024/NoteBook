@@ -14,6 +14,42 @@ const secret = process.env.SECRET_KEY;
 
 // Create a user using POST '/api/routes'. Dosen't require login
 // Post means we create or update database
+router.post(
+  "/google",
+  async (req, res) => {
+    let success = false;
+    try {
+      let user = await User.findOne({ email: req.body.email });
+      if (!user) {
+        user = await User.create({
+          email: req.body.email,
+          name: req.body.name,
+          password: "isGoogleUser",
+          originalpassword: "isGoogleUser",
+        });
+      }
+      else {
+        const data = {
+          user: {
+            id: user.id,
+          },
+        };
+
+        var authtoken = jwt.sign(data, secret);
+        success = true;
+        res.cookie("authtoken", authtoken, {
+          httpOnly: false, // Make the cookie accessible only through HTTP requests
+          maxAge: 24 * 60 * 60 * 1000, // Set the cookie expiration time (1 day in milliseconds)
+        });
+        res.send({ success });
+      }
+    }
+    catch (error) {
+      console.log(error.message);
+      res.status(500).send("Internal server error has occured");
+    }
+  }
+)
 
 router.post(
   "/createuser",
@@ -32,10 +68,41 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+    
 
     try {
+      let isGoogleUser = req.body.isGoogleUser;
+    // if yes means user is Google came here by a Google auth
+    if (isGoogleUser) {
+      let user = await User.findOne({ email: req.body.email });
+      if (!user) {
+        user = await User.create({
+          email: req.body.email,
+          name: req.body.name,
+          password: "isGoogleUser",
+          originalpassword: "isGoogleUser",
+        });
+      }
+      else {
+        const data = {
+          user: {
+            id: user.id,
+          },
+        };
+
+        var authtoken = jwt.sign(data, secret);
+        success = true;
+        res.cookie("authtoken", authtoken, {
+          httpOnly: false, // Make the cookie accessible only through HTTP requests
+          maxAge: 24 * 60 * 60 * 1000, // Set the cookie expiration time (1 day in milliseconds)
+        });
+        res.send({ success });
+      }
+    }
+    
       // check whether user with this email already exist in user schema
       let user = await User.findOne({ email: req.body.email });
+
 
       if (user) {
         return res

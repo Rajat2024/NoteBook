@@ -1,11 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import NoteContext from "../context/notes/noteContext";
 import { useNavigate, Link, useLocation } from "react-router-dom";
-import Cookies from 'js-cookie';
+import { jwtDecode } from "jwt-decode"
 
+import styled from 'styled-components'
+const Container = styled.div`
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin-top: 20px;
+`
 function Login(props) {
   const location = useLocation();
-
+  const [user, setUser] = useState();
   const context = useContext(NoteContext);
   const { fetchData } = context;
 
@@ -20,10 +27,10 @@ function Login(props) {
     setLoad(false);
   };
   const handleClick = async () => {
-    if(credentials.email==="" || credentials.password==="")
-    setLoad(false);
+    if (credentials.email === "" || credentials.password === "")
+      setLoad(false);
     else
-    setLoad(true);
+      setLoad(true);
 
     const response = await fetch("api/auth/login", {
       method: "POST",
@@ -35,9 +42,9 @@ function Login(props) {
         password: credentials.password,
       }),
     });
-    
+
     const json = await response.json();
-    
+
     // console.log(json);
     if (json.success) {
       // localStorage.setItem("token", json.authtoken);
@@ -50,6 +57,61 @@ function Login(props) {
       props.showAlert("Invalid Credentials", "danger");
     }
   };
+
+  async function handleCallbackResponse(userData) {
+    const userObject = jwtDecode(userData.credential)
+    const { name, email } = userObject
+
+
+    const isGoogleUser = true;
+    const response = await fetch("api/auth/google", {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, name, isGoogleUser })
+    })
+
+    const json = await response.json()
+    
+    if (json.success) {
+      setUser({ isGoogleUser })
+      navigate("/")
+      props.showAlert(
+        "Login successfully , Now you can add Notes",
+        "success"
+      );
+    }
+    else {
+      alert(json.message)
+    }
+  }
+
+  useEffect(() => {
+
+    const loadButton = () => {
+      setTimeout(() => {
+        window.google.accounts.id.initialize({
+          client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+          callback: handleCallbackResponse
+        })
+
+        window.google.accounts.id.renderButton(
+          document.getElementById('signinDiv'),
+          {
+            theme: "black",
+            size: "large",
+          }
+        )
+      }, 1000)
+    }
+
+    if (!user)
+      loadButton()
+    else
+      navigate('/')
+  }, [user])
+
+  if (user === 'LOADING')
+    return <> Loading ... </>
 
   return (
     <div>
@@ -107,15 +169,24 @@ function Login(props) {
             Please Wait...
           </button>
         )}
+
       </div>
+   
+      {/* // for Google authetication */}
+      <Container>
+
+        <div id='signinDiv'><b >Loading...</b></div>
+      </Container>
+
+
       <br />
+
       <p className="text-center last-para">
         Don't have an account?{" "}
         <Link
           to="/signup"
-          className={`nav-link ${
-            location.pathname === "/signup" ? "active" : ""
-          }`}
+          className={`nav-link ${location.pathname === "/signup" ? "active" : ""
+            }`}
         >
           SignUp
         </Link>{" "}
