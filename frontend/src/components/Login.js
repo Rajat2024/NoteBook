@@ -116,7 +116,7 @@ function Login(props) {
   return (
     <div>
       <div className="text-center my-4">
-        <h1>NOTEBOOK</h1>
+        <h1>NOTEBOOK by Rajat</h1>
         <p>
           <b>Your notes on cloud ☁️</b>
         </p>
