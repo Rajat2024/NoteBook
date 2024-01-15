@@ -22,7 +22,7 @@ function Navbar(props) {
       >
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
-            NOTEBOOK - Rajat
+            NOTEBOOK - RAJAT
           </a>
           <button
             className="navbar-toggler"
