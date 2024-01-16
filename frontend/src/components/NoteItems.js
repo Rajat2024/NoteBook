@@ -11,6 +11,12 @@ function NoteItems(props) {
         deleteNote(note._id)
         props.showAlert("Note is deleted successfully", "success")
     }
+    const shareNote = () => {
+        var whatsappLink = "https://api.whatsapp.com/send?text=" + encodeURIComponent("tittle = "+note.title)+encodeURIComponent("  Discription = "+note.description);
+
+        // Open the WhatsApp share link in a new window
+        window.open(whatsappLink, '_blank');
+    }
 
     let date = note.date;
     date = date.slice(0, -14).split('-').reverse().join('-');
@@ -26,6 +32,7 @@ function NoteItems(props) {
                         <p>
                             <i className="fa-regular fa-trash-can mx-2" onClick={handleDelete} />
                             <i className="fa-regular fa-pen-to-square mx-2" onClick={() => { updateNote(note) }} />
+                            <i className="fa-solid fa-share-nodes mx-2" onClick={shareNote} />
                         </p>
                     </div>
                     <p><b>{note.tag}</b></p>
